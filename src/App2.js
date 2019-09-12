@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
+import Counter2 from "./Counter2";
 
 //这是redux的原始state
 
@@ -18,19 +19,19 @@ store.subscribe(() =>{
 //store.dispatch(decrease);
 console.log(store.getState());*/
 
-class Counter extends React.Component {
+class Counter3 extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const { PayIncrease1, PayDecrease1 } = this.props;
+        const { PayIncrease, PayDecrease } = this.props;
         return (
             <div>
-
-                <input type = "button" value = "减1"onClick = {PayIncrease1}/>
-                <span> { this.props.aa } </span>
-                <input type = "button" value = "加1" onClick ={PayDecrease1}/>
+                <Counter2  lacotsha={this.props}/>
+                <input type = "button" value = "减12"onClick = {PayIncrease}/>
+                <span> { this.props.app2reducer.app2 } </span>
+                <input type = "button" value = "加12" onClick ={PayDecrease}/>
             </div> )
     }
 }
@@ -38,15 +39,16 @@ class Counter extends React.Component {
 
 //需要渲染什么数据
 function mapStateToProps(state={},prot) {
-    return {aa:state.appreducer.aa};
+
+    return {...state};
 }
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {
     return {
-        PayIncrease1: () => dispatch({ type: '双倍'}),
-        PayDecrease1: () => dispatch({ type: '三倍'})
+        PayIncrease: () => dispatch({ type: '双倍' }),
+        PayDecrease: () => dispatch({ type: '三倍' })
     }
 }
 //连接组件
-Counter = connect(mapStateToProps, mapDispatchToProps)(Counter);
-export default Counter;
+Counter3 = connect(mapStateToProps, mapDispatchToProps)(Counter3);
+export default Counter3;
