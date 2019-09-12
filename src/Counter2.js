@@ -17,7 +17,7 @@ class Counter2 extends React.Component {
 
 
     componentDidMount(){
-        debugger
+
         this.props.location
 
     }
