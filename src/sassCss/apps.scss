@@ -1,0 +1,15 @@
+$bodybacks: #f9eaea;
+body{
+  background:$bodybacks;
+  #root{
+    display: none;
+  }
+.flexTes{
+  background: chartreuse;
+}
+  height: 300px;
+  .parentDivs{
+    @extend .flexTes;
+    display: flex;
+}
+}

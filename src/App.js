@@ -24,6 +24,9 @@ class Counter extends React.Component {
     }
 
     render() {
+        const ssd = ["dfds", "d", "f"];
+        reduce((a, b) => {
+        }, []);
         const { PayIncrease1, PayDecrease1 } = this.props;
         return (
             <div>
