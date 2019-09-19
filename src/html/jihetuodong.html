@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: darkgrey;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<!--dragstart drag dragend-->
+<div id="demo1" class="demo" draggable="true"></div>
+</body>
+<script type="text/javascript">
+    var demo = document.getElementById("demo1");
+    var startX = 0;
+    var startY = 0;
+    demo.ondragstart = function (e) {
+        startX = e.clientX;
+        startY = e.clientY;
+        console.log(e)
+
+    };
+    demo.ondrag = function (e) {
+        //console.log(e)
+
+    };
+    demo.ondragend = function (e) {
+        var disX=e.clientX-startX;
+        var disY=e.clientY-startY;
+        this.style.left = this.offsetLeft+disX + "px";
+        this.style.top=this.offsetTop+disY + "px";
+        console.log(e)
+
+    };
+
+
+</script>
+</html>
