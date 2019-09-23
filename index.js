@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import Routesa from "./src/Routes";
+import './src/index.css';
 /*import Routes from "./src/Routes";*/
 /*
 //这是redux的原始state
