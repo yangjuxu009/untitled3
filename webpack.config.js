@@ -9,6 +9,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 module.exports = {
     entry: {index:'./index.js'},
+
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
