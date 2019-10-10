@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        /*  .box{
+              width: 100px;
+              height: 100px;
+              background-color: #61dafb;
+              transition: all 0.5s;
+              transform: rotate(30deg) translate(3px);
+          }
+          .box:hover{
+              width: 200px;
+              height: 200px;
+          }*/
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            perspective: 800px;
+            transform-style: preserve-3d;
+        }
+
+       /* .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #282c34;
+            perspective: 800px;
+        }
+
+        .wrapper img {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -100px;
+
+        }*/
+        .wrapper img{
+            width: 300px;
+            height: 200px;
+
+        }
+        .img1{
+            transform: translateZ(200px) rotateY(30deg) translateX(150px);
+        }
+    </style>
+</head>
+<body>
+<!--<div class="box"></div>-->
+
+<div class="wrapper">
+    <img  class="img1" src="../img/紧急调度.PNG" alt="">
+
+</div>
+</body>
+</html>
