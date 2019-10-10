@@ -31,7 +31,7 @@ class Counter3 extends React.Component {
         const { PayIncrease, PayDecrease } = this.props;
         return (
             <div>
-               {/* <Counter2  lacotsha={this.props}/>*/}
+                <Counter2  lacotsha={this.props}/>
                 <input type = "button" value = "减12"onClick = {PayIncrease}/>
                 <span> {
                     this.props.Counter3.aa } </span>
