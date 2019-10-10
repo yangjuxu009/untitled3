@@ -27,6 +27,7 @@ class Counter3 extends React.Component {
 
     }
     render() {
+
         const { PayIncrease, PayDecrease } = this.props;
         return (
             <div>
