@@ -6,9 +6,9 @@ let initialState = {
  const appreducer = (state = initialState, action) => {
     switch (action.type){
         case '双倍':
-            return {...state,aa:Number(state.aa)-100};
+            return {...state,aa:Number(state.aa)-action.num};
         case '三倍':
-            return {...state,aa:Number(state.aa)-300};
+            return {...state,aa:Number(state.aa)-action.num};
         default:
             return state;
     }

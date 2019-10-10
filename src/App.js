@@ -38,7 +38,7 @@ class Counter extends React.Component {
 
 //需要渲染什么数据
 function mapStateToProps(state={},prot) {
-    return {aa:state.appreducer.aa};
+    return {Counter:state.Counter.aa};
 }
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {

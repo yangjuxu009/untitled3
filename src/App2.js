@@ -2,8 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-import Counter2 from "./Counter2";
-
 //这是redux的原始state
 
 
@@ -23,15 +21,22 @@ class Counter3 extends React.Component {
     constructor(props) {
         super(props);
     }
+    reactBack=()=>{
+        this.props.history.push({
+            pathname: '/index'})
 
+    }
     render() {
         const { PayIncrease, PayDecrease } = this.props;
         return (
             <div>
-                <Counter2  lacotsha={this.props}/>
+               {/* <Counter2  lacotsha={this.props}/>*/}
                 <input type = "button" value = "减12"onClick = {PayIncrease}/>
-                <span> { this.props.app2reducer.app2 } </span>
+                <span> {
+                    this.props.Counter3.aa } </span>
                 <input type = "button" value = "加12" onClick ={PayDecrease}/>
+
+                <div onClick={this.reactBack}>返回index</div>
             </div> )
     }
 }
@@ -39,14 +44,13 @@ class Counter3 extends React.Component {
 
 //需要渲染什么数据
 function mapStateToProps(state={},prot) {
-
-    return {...state};
+    return {Counter3:state.appreducer};
 }
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {
     return {
-        PayIncrease: () => dispatch({ type: '双倍' }),
-        PayDecrease: () => dispatch({ type: '三倍' })
+        PayIncrease: () => dispatch({ type: '双倍', num: 200 }),
+        PayDecrease: () => dispatch({ type: '三倍', num: 300 })
     }
 }
 //连接组件

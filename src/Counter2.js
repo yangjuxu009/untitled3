@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 /*import Counter from "./App";
 import Counter3 from "./App2";*/
 import { connect } from 'react-redux';
+import {Link,HashRouter} from 'react-router-dom';
 import "./index.css";
 /*import appReducers from "./reducers"
 
@@ -23,7 +24,8 @@ class Counter2 extends React.Component {
     }
     componentWillReceiveProps(nextProps,prevpss) { // 父组件重传props时就会调用这个方法
         this.setState((stats)=>{
-            return {coterNm:nextProps.aa}
+
+            return {coterNm:nextProps.Counter2.aap2}
         })
     }
 
@@ -50,20 +52,20 @@ class Counter2 extends React.Component {
         const { PayIncrease, PayDecrease } = this.props;
         return (
             <div>
-                <div className="flexTes" >
+              {/*  <div className="flexTes" >
                     <div>1</div>
                     <div className="flexTes2">2</div>
                     <div>3</div>
                     <div>4</div>
                     <div>5</div>
-                </div>
-                <canvas id="canvas"></canvas>
-                <div style={stylewall}></div>
+                </div>*/}
+                {/*<canvas id="canvas"></canvas>*/}
+              {/*  <div style={stylewall}></div>*/}
                 <input type = "button" value = "减11"onClick = {PayIncrease}/>
-                <span> { this.props.aa} </span>
+                <span> { this.props.Counter2.app2} </span>
                 <input type = "button" value = "加11" onClick ={PayDecrease}/>
                 <span> { this.state.coterNm} </span>
-                <input type = "button" value = "加116666" onClick ={this.PayDecrease123}/>
+                <Link to="/page2">跳转app2</Link>
 
             </div> )
     }
@@ -160,23 +162,24 @@ class Counter2 extends React.Component {
                 <canvas style={{display:"block"}} id="canvas" width={this.state.cwidth} height={this.state.cheight} ></canvas>
             </div> )
     }
-}*/
+}
 async function fn(args){
     let v1 = await promise1();
     let v2 = await promise2(v1);
 
 }
+*/
 //需要渲染什么数据
 function mapStateToProps(state={},prot) {
     /*this.setState(() => {
         return {coterNm: state.app2reducer.app2}
     });*/
-    return {aa:state.app2reducer.app2};
+    return {Counter2:state.app2reducer};
 }
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {
     return {
-        PayIncrease: () => dispatch({ type: '双倍2'}),
+        PayIncrease: () => {dispatch({ type: '双倍2'})},
         PayDecrease: () => dispatch({ type: '三倍2'})
     }
 }
