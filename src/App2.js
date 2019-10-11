@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Counter2 from './Counter2'
 import {connect} from 'react-redux';
 //这是redux的原始state
 
@@ -33,7 +34,7 @@ class Counter3 extends React.Component {
         const {PayIncrease, PayDecrease} = this.props;
         return (
             <div>
-                {/*<Counter2  lacotsha={this.props}/>*/}
+                <Counter2 aass={this.props.Counter3.aa} lacotsha={this.props}/>
                 <input type="button" value="减12" onClick={PayIncrease}/>
                 <span> {
                     this.props.Counter3.aa} </span>

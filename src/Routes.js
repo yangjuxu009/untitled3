@@ -2,6 +2,7 @@ import React from 'react';
 import Counter2 from "./Counter2";
 import App1 from "./App";
 import App2 from "./App2";
+import Counter33 from "./Counter33";
 import {hashHistory,Route,Redirect,Switch,HashRouter} from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -18,6 +19,7 @@ const Routesa = () => (
                     <Route path="/index" component={Counter2}></Route>
                     <Route path="/page1" component={App1}></Route>
                     <Route path="/page2" component={App2}></Route>
+                    <Route path="/page3" component={Counter33}></Route>
                     <Redirect from="/" to="/index"/> {/*重定向*/}
 
             </HashRouter>
