@@ -5,6 +5,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 /*打包文件夹映射路径*/
 const ManifestPlugin = require('webpack-manifest-plugin');
+
+/*复制静态文件到指定目录下*/
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
 
     entry: {index:'./index.js'},
@@ -19,19 +22,29 @@ module.exports = {
         }), new ManifestPlugin({
             fileName: 'manifest.json',
             basePath: path.resolve(__dirname),
-        })
+        }),new CopyWebpackPlugin([
+            {   from: path.resolve(__dirname, './src/fetchJSON'),
+                to: 'fetchJSON',
+                ignore: ['.*']
+            }
+        ])
+
 
     ],
     devtool: 'inline-source-map', /*跟踪错误信息*/
     devServer: {
         // 根目录下dist为基本目录
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, "fetchJSON")],
         // 自动压缩代码
         compress: true,
         // 服务端口为1208
         port: 1208,
         // 自动打开浏览器
-        open: true
+        open: true,
+        proxy: [{
+            context: ['/fetchJSON/fetchAction', '/api'],
+            target: 'http://localhost:8080',
+        }]
     },
     output: {
         filename: '[name].bundle.js',

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Moment from 'moment';
 import "./index.css";
+import method,{counternew} from "./fetchAction/counterAction"
 /*import appReducers from "./reducers"
 
 //创建store
 const store = createStore(appReducers);*/
+const Feachcoun = counternew;
 class Counter2 extends React.Component {
     constructor(props) {
         super(props);
@@ -60,6 +62,22 @@ class Counter2 extends React.Component {
         }
     }*/
 
+    fetchAction(){
+        const url = "http://localhost:1208/fetchJSON/fetchAction";
+
+        const params ={name:"first"};
+        let fetchthen = counternew.counterFeach(url, params);
+        fetchthen.then(
+            response =>
+                response.json()
+        ).then(function(data) {
+            // 接收到 data 打印出来
+            console.log(data);
+        })
+            .catch(
+
+        )
+    }
     PayDecrease123(){
        /* try {
             this.props.history.push('page2');
@@ -94,6 +112,7 @@ class Counter2 extends React.Component {
                 {/*<canvas id="canvas"></canvas>*/}
               {/*  <div style={stylewall}></div>*/}
                 <input type = "button" value = "减11"onClick = {PayIncrease}/>
+                <input type = "button" value = "fetch"onClick = {this.fetchAction}/>
                 <span> { this.props.Counter2} </span>
                 <input type = "button" value = "加11" onClick ={PayDecrease}/>
                 <span> { this.state.coterNm} </span>
