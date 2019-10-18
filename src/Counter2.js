@@ -2,32 +2,75 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Moment from 'moment';
+import PropTypesTest from "./model/propTypes"
 import "./index.css";
-import method,{counternew} from "./fetchAction/counterAction"
+import method, {counternew} from "./fetchAction/counterAction";
 /*import appReducers from "./reducers"
+
+
+
 
 //创建store
 const store = createStore(appReducers);*/
+
+
+var promise1 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+        resolve('foo');
+    }, 300);
+});
+
+promise1.then(function(value) {
+    console.log(value);
+    // expected output: "foo"
+});
+
+console.log(promise1);
 const Feachcoun = counternew;
-class Counter2 extends React.Component {
-    constructor(props) {
+class Timeruns extends React.Component{
+    constructor(props){
         super(props);
-        this.PayDecrease123 = this.PayDecrease123.bind(this);
-        this.state = {coterNm: 0,timeMoment : Moment().format("YYYY年MM月DD日 h:mm:ss")};
-        this.listRef = React.createRef();
-
+        this.state = {timeMoment : Moment().format("YYYY年MM月DD日 h:mm:ss")};
     }
-
-
+    componentWillMount(){
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return true
+    }
+    componentWillReceiveProps(nextProps){
+    }
     componentDidMount(){
-        this.props.location
-        this.interNum = setInterval( ()=> {
+       let times = setInterval( ()=> {
             this.setState(() => {
                 return {
                     timeMoment: Moment().format("YYYY年MM月DD日 h:mm:ss")
                 }
             });
         },500);
+        this.props.stoptimes(times);
+    }
+
+   render(){
+       return(
+           <div>
+               {this.state.timeMoment}
+           </div>
+       )
+   }
+
+}
+class Counter2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.PayDecrease123 = this.PayDecrease123.bind(this);
+        this.state = {coterNm: 0,starttimes:0};
+        this.listRef = React.createRef();
+    }
+
+
+    componentDidMount(){
+        this.props.location
+
     }
     componentWillUnmount(){
         this.interNum
@@ -111,12 +154,19 @@ class Counter2 extends React.Component {
                 </div>*/}
                 {/*<canvas id="canvas"></canvas>*/}
               {/*  <div style={stylewall}></div>*/}
+              <div>
+                  <PropTypesTest value={this.state.coterNm} name="12"/>
+              </div>
                 <input type = "button" value = "减11"onClick = {PayIncrease}/>
                 <input type = "button" value = "fetch"onClick = {this.fetchAction}/>
                 <span> { this.props.Counter2} </span>
                 <input type = "button" value = "加11" onClick ={PayDecrease}/>
                 <span> { this.state.coterNm} </span>
-                <div><Link to="/page2">跳转app2</Link><span ref={this.listRef}>{this.state.timeMoment}</span></div>
+                <div><Link to="/page2">跳转app2</Link><span ref={this.listRef}><Timeruns  starttimes={this.state.starttimes} stoptimes={(times)=>this.setState({stoptimes:times})}/></span><span onClick={()=>{
+
+                    clearInterval(this.state.stoptimes);
+                }}>停止时间</span></div>
+                <div><Link to="/PropType">跳转PropType</Link></div>
 
             </div> )
     }
@@ -234,8 +284,10 @@ function mapDispatchToProps(dispatch) {
         PayDecrease: () => dispatch({ type: '三倍2'})
     }
 }
+
 //连接组件
 Counter2 = connect(mapStateToProps, mapDispatchToProps)(Counter2);
+
 export default Counter2;
 /*
 ReactDOM.render(<Provider store={store}>
