@@ -1,26 +1,80 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-/*import Counter from "./App";
-import Counter3 from "./App2";*/
 import { connect } from 'react-redux';
-import {Link,HashRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Moment from 'moment';
+import PropTypesTest from "./model/propTypes"
 import "./index.css";
+import method, {counternew} from "./fetchAction/counterAction";
 /*import appReducers from "./reducers"
+
+
+
 
 //创建store
 const store = createStore(appReducers);*/
+
+
+var promise1 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+        resolve('foo');
+    }, 300);
+});
+
+promise1.then(function(value) {
+    console.log(value);
+    // expected output: "foo"
+});
+
+console.log(promise1);
+const Feachcoun = counternew;
+class Timeruns extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {timeMoment : Moment().format("YYYY年MM月DD日 h:mm:ss")};
+    }
+    componentWillMount(){
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return true
+    }
+    componentWillReceiveProps(nextProps){
+    }
+    componentDidMount(){
+       let times = setInterval( ()=> {
+            this.setState(() => {
+                return {
+                    timeMoment: Moment().format("YYYY年MM月DD日 h:mm:ss")
+                }
+            });
+        },500);
+        this.props.stoptimes(times);
+    }
+
+   render(){
+       return(
+           <div>
+               {this.state.timeMoment}
+           </div>
+       )
+   }
+
+}
 class Counter2 extends React.Component {
     constructor(props) {
         super(props);
         this.PayDecrease123 = this.PayDecrease123.bind(this);
-        this.state = {coterNm: 0};
+        this.state = {coterNm: 0,starttimes:0};
+        this.listRef = React.createRef();
     }
 
 
     componentDidMount(){
-
         this.props.location
 
+    }
+    componentWillUnmount(){
+        this.interNum
+        clearInterval(this.interNum);
     }
     componentWillReceiveProps(nextProps,prevpss) { // 父组件重传props时就会调用这个方法
         this.setState((stats)=>{
@@ -29,6 +83,44 @@ class Counter2 extends React.Component {
         })
     }
 
+   /* getSnapshotBeforeUpdate(prevProps, prevState) {
+        debugger
+        //我们是否要添加新的 items 到列表?
+        // 捕捉滚动位置，以便我们可以稍后调整滚动.
+        /!*if (prevProps.list.length < this.props.list.length) {
+            const list = this.listRef.current;
+            return list.scrollHeight - list.scrollTop;
+        }*!/
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        debugger
+        //如果我们有snapshot值, 我们已经添加了 新的items.
+        // 调整滚动以至于这些新的items 不会将旧items推出视图。
+        // (这边的snapshot是 getSnapshotBeforeUpdate方法的返回值)
+        if (snapshot !== null) {
+            const list = this.listRef.current;
+            list.scrollTop = list.scrollHeight - snapshot;
+        }
+    }*/
+
+    fetchAction(){
+        const url = "http://localhost:1208/fetchJSON/fetchAction";
+
+        const params ={name:"first"};
+        let fetchthen = counternew.counterFeach(url, params);
+        fetchthen.then(
+            response =>
+                response.json()
+        ).then(function(data) {
+            // 接收到 data 打印出来
+            console.log(data);
+        })
+            .catch(
+
+        )
+    }
     PayDecrease123(){
        /* try {
             this.props.history.push('page2');
@@ -50,6 +142,7 @@ class Counter2 extends React.Component {
 
         }
         const { PayIncrease, PayDecrease } = this.props;
+
         return (
             <div>
               {/*  <div className="flexTes" >
@@ -61,11 +154,19 @@ class Counter2 extends React.Component {
                 </div>*/}
                 {/*<canvas id="canvas"></canvas>*/}
               {/*  <div style={stylewall}></div>*/}
+              <div>
+                  <PropTypesTest value={this.state.coterNm} name="12"/>
+              </div>
                 <input type = "button" value = "减11"onClick = {PayIncrease}/>
-                <span> { this.props.Counter2.app2} </span>
+                <input type = "button" value = "fetch"onClick = {this.fetchAction}/>
+                <span> { this.props.Counter2} </span>
                 <input type = "button" value = "加11" onClick ={PayDecrease}/>
                 <span> { this.state.coterNm} </span>
-                <Link to="/page2">跳转app2</Link>
+                <div><Link to="/page2">跳转app2</Link><span ref={this.listRef}><Timeruns  starttimes={this.state.starttimes} stoptimes={(times)=>this.setState({stoptimes:times})}/></span><span onClick={()=>{
+
+                    clearInterval(this.state.stoptimes);
+                }}>停止时间</span></div>
+                <div><Link to="/PropType">跳转PropType</Link></div>
 
             </div> )
     }
@@ -174,7 +275,7 @@ function mapStateToProps(state={},prot) {
     /*this.setState(() => {
         return {coterNm: state.app2reducer.app2}
     });*/
-    return {Counter2:state.app2reducer};
+    return {Counter2:state.app2reducer.app2};
 }
 //需要触发什么行为
 function mapDispatchToProps(dispatch) {
@@ -183,8 +284,10 @@ function mapDispatchToProps(dispatch) {
         PayDecrease: () => dispatch({ type: '三倍2'})
     }
 }
+
 //连接组件
 Counter2 = connect(mapStateToProps, mapDispatchToProps)(Counter2);
+
 export default Counter2;
 /*
 ReactDOM.render(<Provider store={store}>

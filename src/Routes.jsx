@@ -2,13 +2,16 @@ import React from 'react';
 import Counter2 from "./Counter2";
 import App1 from "./App";
 import App2 from "./App2";
+import PropTypesTest from "./model/propTypes";
+import Counter33 from "./Counter33";
 import {hashHistory,Route,Redirect,Switch,HashRouter} from 'react-router-dom';
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux'
 import appReducer from './reducers';
 
 // 使用合并后的那个Reducer
-const store = createStore(appReducer);
+const store = createStore(appReducer,applyMiddleware(thunk));
 // 2.构建路由
 const Routesa = () => (
         <Provider store={store}>
@@ -16,7 +19,9 @@ const Routesa = () => (
 
                     <Route path="/index" component={Counter2}></Route>
                     <Route path="/page1" component={App1}></Route>
+                    <Route path="/PropType" component={PropTypesTest}></Route>
                     <Route path="/page2" component={App2}></Route>
+                    <Route path="/page3" component={Counter33}></Route>
                     <Redirect from="/" to="/index"/> {/*重定向*/}
 
             </HashRouter>

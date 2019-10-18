@@ -1,15 +1,16 @@
 const path = require('path');
-/*生成文件模板配置*/
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 /*清理文件夹*/
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 /*打包文件夹映射路径*/
 const ManifestPlugin = require('webpack-manifest-plugin');
-module.exports = {
-    entry: {index:'./index.js'},
 
+/*复制静态文件到指定目录下*/
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+module.exports = {
+
+    entry: {index:'./index.js'},
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -21,19 +22,29 @@ module.exports = {
         }), new ManifestPlugin({
             fileName: 'manifest.json',
             basePath: path.resolve(__dirname),
-        })
+        }),new CopyWebpackPlugin([
+            {   from: path.resolve(__dirname, './src/fetchJSON'),
+                to: 'fetchJSON',
+                ignore: ['.*']
+            }
+        ])
+
 
     ],
     devtool: 'inline-source-map', /*跟踪错误信息*/
     devServer: {
         // 根目录下dist为基本目录
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, "fetchJSON")],
         // 自动压缩代码
         compress: true,
         // 服务端口为1208
         port: 1208,
         // 自动打开浏览器
-        open: true
+        open: true,
+        proxy: [{
+            context: ['/fetchJSON/fetchAction', '/api'],
+            target: 'http://localhost:8080',
+        }]
     },
     output: {
         filename: '[name].bundle.js',
@@ -42,31 +53,18 @@ module.exports = {
         publicPath: '/'
     },
     context: __dirname,
-    module: {
-
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
+        module: {
         rules: [
-            { test: /\.js|jsx$/, use: 'babel-loader', exclude: /node_modules/ },
 
+            { test: /\.js|jsx$/, use: 'babel-loader', exclude: /node_modules/ },
             {
-                test: /\.css|.scss$/,
+                test: /\.css$/,
                 use: [
-                    //  {
-                    //  	loader: miniCssExtractPlugin.loader,
-                    //   options: {
-                    // 	  hmr: process.env.NODE_ENV === 'development'
-                    //   }
-                    // },
                     'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function () {
-                                return [autoprefixer('last 5 versions')]
-                            }
-                        }
-                    },
-                    'sass-loader'
+                    'css-loader'
                 ]
             },
             {
