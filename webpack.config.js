@@ -54,11 +54,10 @@ module.exports = {
     },
     context: __dirname,
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx',".ts", ".tsx"]
     },
         module: {
         rules: [
-
             { test: /\.js|jsx$/, use: 'babel-loader', exclude: /node_modules/ },
             {
                 test: /\.css$/,

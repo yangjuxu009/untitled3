@@ -33,13 +33,13 @@ export default class PropTypesTest extends React.Component{
 
         return(
             <div>
-                <ThemeContext.Provider value="dark">
+               {/* <ThemeContext.Provider value="dark">
                     <Toolbar />
                 </ThemeContext.Provider>
                 <FancyButton ref={this.myRef}><div>dddsf</div>Click me!</FancyButton>
                 <div>{this.props.name}</div>
                 <div>{this.props.value}</div>
-                {this.state.propTypes1===0?(<div>没有赋值</div>):(<div>赋值</div>)}
+                {this.state.propTypes1===0?(<div>没有赋值</div>):(<div>赋值</div>)}*/}
 
                 <Link to="/index">跳转counter</Link>
             </div>
@@ -49,7 +49,7 @@ export default class PropTypesTest extends React.Component{
 }
 PropTypesTest.contextType = ThemeContext;
 PropTypesTest.propTypes= {
-    name: PropTypes.number
+    name: PropTypes.string
 };
 // 中间的组件再也不必指明往下传递 theme 了。
 function Toolbar(props) {

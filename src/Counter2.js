@@ -40,14 +40,16 @@ class Timeruns extends React.Component{
     componentWillReceiveProps(nextProps){
     }
     componentDidMount(){
-       let times = setInterval( ()=> {
+       this.times = setInterval( ()=> {
             this.setState(() => {
                 return {
                     timeMoment: Moment().format("YYYY年MM月DD日 h:mm:ss")
                 }
             });
         },500);
-        this.props.stoptimes(times);
+    }
+    componentWillUnmount(){
+        clearInterval(this.times);
     }
 
    render(){
@@ -72,10 +74,10 @@ class Counter2 extends React.Component {
         this.props.location
 
     }
-    componentWillUnmount(){
+    /*componentWillUnmount(){
         this.interNum
         clearInterval(this.interNum);
-    }
+    }*/
     componentWillReceiveProps(nextProps,prevpss) { // 父组件重传props时就会调用这个方法
         this.setState((stats)=>{
 
@@ -164,7 +166,7 @@ class Counter2 extends React.Component {
                 <span> { this.state.coterNm} </span>
                 <div><Link to="/page2">跳转app2</Link><span ref={this.listRef}><Timeruns  starttimes={this.state.starttimes} stoptimes={(times)=>this.setState({stoptimes:times})}/></span><span onClick={()=>{
 
-                    clearInterval(this.state.stoptimes);
+
                 }}>停止时间</span></div>
                 <div><Link to="/PropType">跳转PropType</Link></div>
 

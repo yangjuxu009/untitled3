@@ -3,6 +3,8 @@ import Counter2 from "./Counter2";
 import App1 from "./App";
 import App2 from "./App2";
 import PropTypesTest from "./model/propTypes";
+import stateTest  from "./model/stateTest";
+import {MouseTracker} from "./model/tabPage1";
 import Counter33 from "./Counter33";
 import {hashHistory,Route,Redirect,Switch,HashRouter} from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
@@ -16,10 +18,10 @@ const store = createStore(appReducer,applyMiddleware(thunk));
 const Routesa = () => (
         <Provider store={store}>
             <HashRouter history={hashHistory}>
-
-                    <Route path="/index" component={Counter2}></Route>
                     <Route path="/page1" component={App1}></Route>
                     <Route path="/PropType" component={PropTypesTest}></Route>
+                    <Route path="/index" component={MouseTracker}></Route>
+                    <Route path="/index1" component={stateTest}></Route>
                     <Route path="/page2" component={App2}></Route>
                     <Route path="/page3" component={Counter33}></Route>
                     <Redirect from="/" to="/index"/> {/*重定向*/}
