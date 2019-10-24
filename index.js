@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routesa from "./src/Routes";
+/*import Routesa from "./src/routers/routerone";*/
 /*import Routes from "./src/Routes";*/
 /*
 //这是redux的原始state
