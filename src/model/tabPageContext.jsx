@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-export const {Provider,Consumer} = React.createContext({
-    theme: "themes.dark",
-    toggleTheme: () => {},
-});
+export const {Provider,Consumer} = React.createContext();
 const items = [
     {barcode: 'ITEM000000', name: '可口可乐', unit: '瓶', price: 3.00},
     {barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3.00},
@@ -39,14 +36,16 @@ class Cat extends React.Component {
     render() {
         return (
             <Consumer>
-                {({theme, toggleTheme}) => (
+                {({theme, toggleTheme}) => {
+                    debugger
+                    return(
                     <button
                         onClick={()=>{toggleTheme(569999)}}
                        >
                         {theme}
                         Toggle Theme
                     </button>
-                )}
+                )}}
             </Consumer>
 
         );
@@ -56,12 +55,12 @@ class Cat extends React.Component {
 export default class TabPageContext extends React.Component {
     constructor(props){
         super(props);
-        this.toggleTheme = (ss) => {
+      /*  this.toggleTheme = (ss) => {
             this.setState(state => ({
                 theme:
-                   ss
+                    new Date().getTime()
             }));
-        };
+        };*/
 
         // State 也包含了更新函数，因此它会被传递进 context provider。
         this.state = {
@@ -69,8 +68,14 @@ export default class TabPageContext extends React.Component {
             toggleTheme: this.toggleTheme,
         };
     }
-
+componentWillMount(){
+        debugger
+}
+componentDidMount(){
+        debugger
+}
     render() {
+        debugger
         return (
             <div>
                 <Provider value={this.state}>

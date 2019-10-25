@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 export default class StateTest extends React.Component{
     constructor(props){
-        debugger
         super(props);
         this.state={
             nums: 0,
@@ -12,7 +11,6 @@ export default class StateTest extends React.Component{
         }
     }
     clickThis=(es)=>{
-debugger
     this.setState({nums:"1+this.state.nums",nums1:"1+this.state.nums1"});
 
     debugger
@@ -25,7 +23,7 @@ console.log()
     }
     componentDidMount(){
         debugger
-        this.setState( { nums: this.state.nums + 1 } );
+       /* this.setState( { nums: this.state.nums + 1 } );
 
         console.log( "diyici"+this.state.nums );    // 会输出什么？
         debugger
@@ -36,12 +34,12 @@ console.log()
 
         let obs1 = {name: "开始"};
         let newobs = Object.assign({},obs1, {age: 5});
-        debugger
+        debugger*/
     }
-    shouldComponentUpdate(nextProps, nextState) {
+    /*shouldComponentUpdate(nextProps, nextState) {
         debugger
         return true
-    }
+    }*/
     componentWillReceiveProps(nextProps){
         debugger
     }
