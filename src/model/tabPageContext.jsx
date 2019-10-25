@@ -37,7 +37,6 @@ class Cat extends React.Component {
         return (
             <Consumer>
                 {({theme, toggleTheme}) => {
-                    debugger
                     return(
                     <button
                         onClick={()=>{toggleTheme(569999)}}
