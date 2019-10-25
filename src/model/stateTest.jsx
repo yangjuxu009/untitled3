@@ -11,39 +11,35 @@ export default class StateTest extends React.Component{
         }
     }
     clickThis=(es)=>{
-    this.setState({nums:"1+this.state.nums",nums1:"1+this.state.nums1"});
+    this.setState({nums:new Date().getTime(),nums1:"1+this.state.nums1"});
 
     debugger
-console.log()
 
 
     }
-    componentWillMount(){
+   /*componentWillMount(){
         debugger
-    }
-    componentDidMount(){
-        debugger
-       /* this.setState( { nums: this.state.nums + 1 } );
-
-        console.log( "diyici"+this.state.nums );    // 会输出什么？
-        debugger
-        for ( let i = 0; i < 100; i++ ) {
-            this.setState( { num: this.state.num + 1 } );
-            console.log( this.state.num );    // 会输出什么？
-        }
-
-        let obs1 = {name: "开始"};
-        let newobs = Object.assign({},obs1, {age: 5});
-        debugger*/
-    }
-    /*shouldComponentUpdate(nextProps, nextState) {
-        debugger
-        return true
-    }*/
+   }
     componentWillReceiveProps(nextProps){
         debugger
     }
     componentWillUpdate(){
+        debugger
+    }*/
+    componentDidMount(){
+        debugger
+
+    }
+    getDerivedStateFromProps(){
+        debugger
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        debugger
+        return true
+    }
+
+
+    getSnapshotBeforeUpdate(){
         debugger
     }
     componentDidUpdate(){

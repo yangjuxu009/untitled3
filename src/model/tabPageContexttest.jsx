@@ -15,9 +15,7 @@ componentWillMount(){
 componentDidMount(){
 
 }
-getSnapshotBeforeUpdate(){
-        debugger
-}
+
 shouldComponentUpdate(nextProps, nextState) {
 
       /*  if (nextState.theme === "themes.light") {

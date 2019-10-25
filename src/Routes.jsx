@@ -24,8 +24,8 @@ const Routesa = () => (
                     <Route path="/page1" component={App1}></Route>
                     <Route path="/PropType" component={PropTypesTest}></Route>
                     <Route path="/index4" component={MouseTracker}></Route>
-                    <Route path="/index5" component={TabPageContexttest}></Route>
-                    <Route path="/index" component={usehookfirst}></Route>
+                    <Route path="/index" component={TabPageContexttest}></Route>
+                    <Route path="/index9" component={usehookfirst}></Route>
                     <Route path="/index2" component={TabPageContext}></Route>
                     <Route path="/index1" component={stateTest}></Route>
                     <Route path="/page2" component={App2}></Route>
