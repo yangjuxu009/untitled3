@@ -41,6 +41,7 @@ shouldComponentUpdate(nextProps, nextState) {
                 <input type="radio" name="nan" defaultChecked ={true}/>
                 <input type="radio" name="nan"/>
                 <Link to="/index1">跳转counter</Link>
+                <Link to="/page1">跳转page1</Link>
             </div>
         );
     }

@@ -41,7 +41,6 @@ const RouteConfig = ()=>(
     <Router history={history}>
         <Route path="/" component={App1}>
             <IndexRoute component={App2} />//首页
-
             <Route path="index" component={Counter33} />
             <Route path="helpCenter" getComponent={helpCenter} />//帮助中心
             <Route path="saleRecord" getComponent={saleRecord} />//销售记录
